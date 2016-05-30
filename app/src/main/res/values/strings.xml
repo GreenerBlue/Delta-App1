@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">KountKolor</string>
+    <string name="button1">Increment</string>
+    <string name="button2">Reset</string>
+</resources>
