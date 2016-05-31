@@ -2,10 +2,12 @@ package com.testing.atul.counter1;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     }};
 
     TextView t;
+    RelativeLayout rl;
     Activity act;
 
     @Override
@@ -33,10 +36,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        act = this;
         t = (TextView) findViewById(R.id.box1);
         t.setText("0");
 
-        act = this;
+        rl = (RelativeLayout)findViewById(R.id.lay1);
 
         Button up = (Button) findViewById(R.id.button);
         Button r = (Button) findViewById(R.id.button2);
@@ -47,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 count++;
                 col = (col+1)%6;
-                act.findViewById(android.R.id.content).setBackgroundColor(randColor.get(col));
+                rl.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),randColor.get(col)));
                 t.setText(String.format("%d",count));
 
             }
@@ -59,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 count=0;
                 t.setText("0");
-                act.findViewById(android.R.id.content).setBackgroundColor(Color.LTGRAY);
+                act.findViewById(android.R.id.content).setBackgroundColor(Color.GRAY);
+                //rl.setBackgroundColor(ContextCompat.getColor(getApplicationContext(), Color.GRAY));
 
             }
         });
@@ -80,6 +85,6 @@ public class MainActivity extends AppCompatActivity {
         count = savedInstanceState.getInt("Counter",0);
         col = savedInstanceState.getInt("Color");
         t.setText(String.format("%d",count));
-        act.findViewById(android.R.id.content).setBackgroundColor(randColor.get(col));
+        rl.setBackgroundColor(ContextCompat.getColor(this,randColor.get(col)));
     }
 }
